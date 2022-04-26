@@ -1,25 +1,31 @@
+#import necesary libraries
 import cv2
 import time
 import imutils
 
+#initialize camera
 cam = cv2.VideoCapture(0) #Give proper camera id
 time.sleep(1)
 
 firstFrame=None
 area = 500
 
-while True:
+while True: # capture frames continously untill 'q' is pressed
     _,img = cam.read()
     text = "Normal"
     img = imutils.resize(img, width=500)
     grayImg = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     gaussianImg = cv2.GaussianBlur(grayImg, (21, 21), 0)
     if firstFrame is None:
-            firstFrame = gaussianImg
-            continue
+        # set first frame as background image or base image 
+        firstFrame = gaussianImg
+        continue
+    # Difference between Images and backround or base image
     imgDiff = cv2.absdiff(firstFrame, gaussianImg)
+    # Apply threshold to difference image and then apply dialation
     threshImg = cv2.threshold(imgDiff, 25, 255, cv2.THRESH_BINARY)[1]
     threshImg = cv2.dilate(threshImg, None, iterations=2)
+    # find contours
     cnts = cv2.findContours(threshImg.copy(), cv2.RETR_EXTERNAL,
             cv2.CHAIN_APPROX_SIMPLE)
     cnts = imutils.grab_contours(cnts)
