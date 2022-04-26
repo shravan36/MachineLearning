@@ -1,3 +1,3 @@
-Here we are connecting a camera and live stream is accessed and processed to find the mving object.
-With this code we will set first frame as base or background frame and in the next frames, if there is any change in the frames compared to background 
+1.Here we are connecting a camera and live stream is accessed and processed to find the mving object.
+2.With this code we will set first frame as base or background frame and in the next frames, if there is any change in the frames compared to background 
 frame it will be marked as moving object detected otherwise the frame is marked as normal.
