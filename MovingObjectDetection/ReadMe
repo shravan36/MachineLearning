@@ -1,0 +1,2 @@
+With this code we will set first frame as base or background frame and in the next frames, if there is any change in the frames compared to background 
+frame it will be marked as moving object detected otherwise the frame is marked as normal.
